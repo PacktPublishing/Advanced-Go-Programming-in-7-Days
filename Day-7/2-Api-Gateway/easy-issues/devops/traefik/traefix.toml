@@ -1,0 +1,49 @@
+dubug = true
+
+logLevel = "INFO"
+defaultEntryPoints = ["http"]
+
+[traefikLog]
+  filePath = "traefik.log"
+  formt = "json"
+
+[accessLog]
+  filePath = "access.log"
+  formt = "json"
+
+[entryPoints]
+  [entryPoints.http]
+  address = ":80"
+
+[frontends]
+  [frontends.users]
+  backend = "users"
+  passHostHeaders = true
+    [frontends.users.routes.all]
+      rule = "PathPrefix:/api/users/"
+  [frontends.issues]
+  backend = "issues"
+  passHostHeaders = true
+    [frontends.issues.routes.all]
+      rule = "PathPrefix:/api/issues/"
+
+[backends]
+  [backends.users]
+    [backends.users.healthcheck]
+      path="/health"
+    [backends.users.servers.users]
+      url = "http://localhost:8091"
+  [backends.issues]
+    [backends.issues.servers.issues]
+      url = "http://localhost:8092"
+
+[file]
+
+[retry]
+
+[api]
+dashboard=true
+
+[ping]
+
+[healthcheck]
