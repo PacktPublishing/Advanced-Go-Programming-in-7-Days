@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+package protocol;
+
+option java_multiple_files = true;
+
+service User {
+    rpc SubmitNewUser(NewUserRequest) returns (NewUserResponse) {}
+}
+
+enum UserStatus {
+    INACTIVE = 0;
+    ACTIVE = 1;
+    DELETED = 2;
+}
+
+message NewUserRequest {
+    string email = 1;
+    string uuid = 2;
+    UserStatus status = 3;
+}
+
+message NewUserResponse {
+    string email = 1;
+    string uuid = 2;
+    UserStatus status = 3;
+}
