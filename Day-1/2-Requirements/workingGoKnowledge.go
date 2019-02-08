@@ -34,6 +34,10 @@ func main()  {
 	// short declaration assignment
 	stringSlice := [3]string{"1", "2", "3"}
 
+    intSlice := []int{1,6,8}
+
+    fmt.Print(intSlice)
+
 	// basic slice operations
 	fmt.Println(len(stringSlice))
 
